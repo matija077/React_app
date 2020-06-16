@@ -21,7 +21,7 @@ class Directory extends Component {
                     title: 'jackets',
                     imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
                     id: 2,
-                    linkUrl: 'shop/jackets'
+                    linkUrl: 'shop/jackets2'
                 },
                 {
                     title: 'sneakers',
