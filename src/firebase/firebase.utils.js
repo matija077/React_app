@@ -23,7 +23,7 @@ export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
 // we can use any provider we want I.E twitter...
-const provider = new firebase.auth.GithubAuthProvider();
+const provider = new firebase.auth.GoogleAuthProvider();
 //
 provider.setCustomParameters({ prompt: 'select_account'});
 
