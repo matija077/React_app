@@ -13,6 +13,7 @@ class SignIn extends React.Component {
         this.state = {
             email: "matija.prs@gmail.com",
             password: "",
+            history: props.history,
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,7 +23,7 @@ class SignIn extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        console.dir(event.target);
+        //console.dir(event.target);
     }
 
     handleChange(event) {
@@ -34,7 +35,7 @@ class SignIn extends React.Component {
     }
 
     render() {
-        var {email, password} = this.state;
+        var {email, password, history} = this.state;
 
         /**
          * to prevent defautl behaviour of forms. can be used for toher DOM
@@ -47,8 +48,13 @@ class SignIn extends React.Component {
             event.preventDefault();
             f(...params);
         }
+        const preventDefaultBind = preventDefaultFunction.bind(this, signInWithGoogle);
 
-        const preventDefaultConst = preventDefaultFunction.bind(this, signInWithGoogle);
+        function redirect(history) {
+            history.goBack();
+        }
+        const redirectBind = redirect.bind(null, history);
+
 
         return (
             <div className="sign-in" onSubmit={this.handleSubmit}>
@@ -75,7 +81,7 @@ class SignIn extends React.Component {
 
                     <div className="submit-buttons">
                         <SubmitButton type="input">Sign In</SubmitButton>
-                        <SubmitButton onClick={(event) => preventDefaultConst(event, 3, 2)}>Sign in with Google</SubmitButton>
+                        <SubmitButton onClick={(event) => preventDefaultBind(event, redirectBind)}>Sign in with Google</SubmitButton>
                     </div>
                 </form>
             </div>

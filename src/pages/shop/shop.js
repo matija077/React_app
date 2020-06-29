@@ -6,6 +6,7 @@ import PreviewCollection from '../../components/preview-collection/preview-colle
 class Shop extends React.Component {
     constructor(props) {
         super(props);
+        console.log(props);
 
         this.state = {
             collections: SHOP_DATA,
