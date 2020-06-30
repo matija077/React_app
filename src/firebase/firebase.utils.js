@@ -36,8 +36,39 @@ function signInWithGoogle2(callback) {
      });
 }
 
+async function createUser(userRef, userAuth, additionalData) {
+    const {displayName, email } = userAuth;
+    const createdAt = new Date();
+
+    try {
+        await userRef.set({
+            displayName,
+            email,
+            createdAt,
+            ...additionalData
+        })
+    } catch(error) {
+        throw('creating user' + error);
+    }
+}
+
+export async function createUserProfileDocument(userAuth, additionalData) {
+    if (!userAuth) return;
+
+    const userRef = firestore.doc(`users/${userAuth.uid}`);
+
+    try {
+        const result = await userRef.get();
+        if (result.exists) {
+            await createUser(userRef, userAuth, additionalData);
+        }
+    } catch(error) {
+        console.log(error);
+    }
+
+    return userRef;
+}
+
 export const signInWithGoogle = signInWithGoogle2.bind(this);
-
-
 
 export default firebase;
