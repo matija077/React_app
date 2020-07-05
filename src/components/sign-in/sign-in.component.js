@@ -5,7 +5,7 @@ import './sign-in.style.scss';
 import FormInput from '../from-input/form-input.component';
 import SubmitButton from '../SubmitButton/SubmitButton.component';
 
-import { signInWithGoogle }from '../../firebase/firebase.utils';
+import { auth, signInWithGoogle }from '../../firebase/firebase.utils';
 import preventDefaultFunction from '../functions/preventDefault';
 class SignIn extends React.Component {
     constructor(props) {
@@ -17,12 +17,29 @@ class SignIn extends React.Component {
             history: props.history,
         };
 
+        this.startState = this.state;
+
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.clearState = this.clearState.bind(this);
     }
 
-    handleSubmit(event) {
+    clearState() {
+        this.setState({...this.startState}, console.log(this.state));
+    }
+
+    async handleSubmit(event) {
         event.preventDefault();
+
+        const {email, password} = this.state;
+
+        try {
+            await auth.signInWithEmailAndPassword(email, password);
+
+            this.clearState();
+        } catch(error) {
+            console.log(error);
+        }
 
         //console.dir(event.target);
     }
