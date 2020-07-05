@@ -63,7 +63,7 @@ export async function createUserProfileDocument(userAuth, additionalData) {
             await createUser(userRef, userAuth, additionalData);
         }
     } catch(error) {
-        console.log(error);
+        throw error;
     }
 
     return userRef;
