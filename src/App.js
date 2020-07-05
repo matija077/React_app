@@ -71,7 +71,7 @@ class App extends React.Component {
         <Switch>
           <Route component={HomePage} path='/' exact></Route>
           <Route component={Shop} path='/shop'></Route>
-          <Route component={SingInAndSingUpPage} path='/signin'></Route>
+          <Route component={SingInAndSingUpPage} path={['/signin', '/singup']}></Route>
         </Switch>
       </div>
     );

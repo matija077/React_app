@@ -6,6 +6,7 @@ import FormInput from '../from-input/form-input.component';
 import SubmitButton from '../SubmitButton/SubmitButton.component';
 
 import { signInWithGoogle }from '../../firebase/firebase.utils';
+import preventDefaultFunction from '../functions/preventDefault';
 class SignIn extends React.Component {
     constructor(props) {
         super(props);
@@ -37,17 +38,6 @@ class SignIn extends React.Component {
     render() {
         var {email, password, history} = this.state;
 
-        /**
-         * to prevent defautl behaviour of forms. can be used for toher DOM
-         * related events.
-         * @param {Function} f function which will be called
-         * @param {Event} event used to preventDefautl behaviour
-         * @param  {...any} params any params passed to the function
-         */
-        function preventDefaultFunction(f, event, ...params) {
-            event.preventDefault();
-            f(...params);
-        }
         const preventDefaultBind = preventDefaultFunction.bind(this, signInWithGoogle);
 
         function redirect(history) {

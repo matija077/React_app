@@ -59,7 +59,7 @@ export async function createUserProfileDocument(userAuth, additionalData) {
 
     try {
         const result = await userRef.get();
-        if (result.exists) {
+        if (!result.exists) {
             await createUser(userRef, userAuth, additionalData);
         }
     } catch(error) {
