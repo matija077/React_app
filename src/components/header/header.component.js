@@ -9,8 +9,8 @@ import './header.style.scss';
 import {ReactComponent as Logo} from '../../assets/4.3 crown.svg.svg';
 import {auth} from './../../firebase/firebase.utils';
 
-function Header({user, ...rest}) {
-    console.log(user);
+function Header({currentUser, ...rest}) {
+    console.log(currentUser);
     return(
         <div className="header">
             <Link to="/" className="logo-container">
@@ -23,7 +23,7 @@ function Header({user, ...rest}) {
                 <Link to="/shop" className="option">
                     CONTACT
                 </Link>
-                {user ?
+                {currentUser ?
                     <div className="option" onClick={() =>
                         auth.signOut()}>
                         SIGN OUT
