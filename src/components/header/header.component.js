@@ -1,6 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
+import {connect} from 'react-redux';
+
 import {Auth} from './../../firebase/firebase.utils';
 
 import './header.style.scss';
@@ -34,4 +36,11 @@ function Header({user, ...rest}) {
     );
 }
 
-export default Header;
+// state is actualy yroot reducer
+function mapStateToProps(state) {
+    return {
+        currentUser: state.user.currentUser,
+    };
+};
+
+export default connect(mapStateToProps)(Header);
