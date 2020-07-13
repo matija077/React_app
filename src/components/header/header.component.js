@@ -12,8 +12,8 @@ import './header.style.scss';
 import {ReactComponent as Logo} from '../../assets/4.3 crown.svg.svg';
 import {auth} from './../../firebase/firebase.utils';
 
-function Header({currentUser, ...rest}) {
-    console.log(currentUser);
+function Header({currentUser, hidden, ...rest}) {
+    console.log(hidden);
     return(
         <div className="header">
             <Link to="/" className="logo-container">
@@ -34,17 +34,22 @@ function Header({currentUser, ...rest}) {
                 :
                     <Link to="/signin" className="option">SIGN IN</Link>
                 }
-                <CartIcon></CartIcon>
+                    <CartIcon></CartIcon>
             </div>
-            <Cart></Cart>
+            {hidden ?
+                null
+            :
+                <Cart></Cart>
+            }
         </div>
     );
 }
 
 // state is actualy yroot reducer
-function mapStateToProps(state) {
+function mapStateToProps({user: {currentUser}, cart : {hidden}}) {
     return {
-        currentUser: state.user.currentUser,
+        currentUser,
+        hidden,
     };
 };
 
