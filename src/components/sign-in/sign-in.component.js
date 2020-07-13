@@ -89,7 +89,7 @@ class SignIn extends React.Component {
                     <div className="submit-buttons">
                         <SubmitButton type="input">Sign In</SubmitButton>
                         <SubmitButton
-                            onClick={(event) => preventDefaultBind(event, redirectBind)}
+                            onClick={(event) => preventDefaultBind(event)}
                             isGoogleSignIn>
                             Sign in with Google
                         </SubmitButton>

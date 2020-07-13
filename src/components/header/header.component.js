@@ -1,6 +1,9 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
+import CartIcon from '../card-icon/card-icon.component';
+import Cart from '../cart/cart.component';
+
 import {connect} from 'react-redux';
 
 import {Auth} from './../../firebase/firebase.utils';
@@ -31,7 +34,9 @@ function Header({currentUser, ...rest}) {
                 :
                     <Link to="/signin" className="option">SIGN IN</Link>
                 }
+                <CartIcon></CartIcon>
             </div>
+            <Cart></Cart>
         </div>
     );
 }

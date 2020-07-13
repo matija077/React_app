@@ -29,8 +29,8 @@ provider.setCustomParameters({ prompt: 'select_account'});
 
 function signInWithGoogle2(callback) {
      auth.signInWithPopup(provider).then(function(result) {
-         console.log(callback);
-         callback();
+         //console.log(callback);
+         if (callback) callback();
      }).catch(function(error) {
          console.log(error);
      });
