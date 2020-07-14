@@ -1,11 +1,13 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
+import {addCartItem} from '../../redux/cart/cart.actions';
 import SubmitComponent from '../SubmitButton/SubmitButton.component';
 
 import './item-collection.style.scss';
 
-function ItemCollection({id, name, price, imageUrl, ...rest}) {
-    console.log(id);
+function ItemCollection({item, addItem, ...rest}) {
+    const {name, price, imageUrl } = item;
 
     return(
         <div className="collection-item">
@@ -20,9 +22,20 @@ function ItemCollection({id, name, price, imageUrl, ...rest}) {
                 <span className="name">{name}</span>
                 <span className="price">{price}</span>
             </div>
-            <SubmitComponent inverted>ADD TO CART</SubmitComponent>
+            <SubmitComponent
+                inverted
+                 onClick={() => addItem(item)}
+            >
+                ADD TO CART
+            </SubmitComponent>
         </div>
     );
 }
 
-export default ItemCollection;
+const mapDispatchToProps = dispatch => {
+    return {
+        addItem: (item) => dispatch(addCartItem(item)),
+    };
+}
+
+export default connect(null, mapDispatchToProps)(ItemCollection);

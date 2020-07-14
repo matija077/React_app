@@ -14,8 +14,8 @@ function PreviewCollection({ title, items, ...rest }) {
             {
                 items
                     .filter((item, index) => index < filterItemsValue)
-                    .map(({id, ...otherItemProps}) => (
-                        <ItemCollection key={id} {...otherItemProps}></ItemCollection>
+                    .map((item) => (
+                        <ItemCollection key={item.id} item={item}></ItemCollection>
                     )
                 )
             }
