@@ -1,5 +1,7 @@
 import React from 'react';
 
+import SubmitComponent from '../SubmitButton/SubmitButton.component';
+
 import './item-collection.style.scss';
 
 function ItemCollection({id, name, price, imageUrl, ...rest}) {
@@ -18,6 +20,7 @@ function ItemCollection({id, name, price, imageUrl, ...rest}) {
                 <span className="name">{name}</span>
                 <span className="price">{price}</span>
             </div>
+            <SubmitComponent inverted>ADD TO CART</SubmitComponent>
         </div>
     );
 }
