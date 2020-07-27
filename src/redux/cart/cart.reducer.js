@@ -1,5 +1,6 @@
 import {cartActionTypes} from './cart.types';
-
+import addItemToCart from './cart.utils';
+;
 var INITIAL_STATE = {
     hidden: true,
     cartItems: [],
@@ -16,7 +17,8 @@ function cartReducer(currentState = INITIAL_STATE, action) {
         case cartActionTypes.ADD_CART_ITEM: {
             return {
                 ...currentState,
-                cartItems: [...currentState.cartItems, action.payload],
+                cartItems: addItemToCart(
+                    currentState.cartItems, action.payload)
             };
         }
         case cartActionTypes.REMOVE_CARD_ITEM: {
