@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import {selectCartItems} from '../../redux/cart/card.selectors';
+
 import SubmitComponent from '../SubmitButton/SubmitButton.component';
 import CartItem from '../cart-item/cartItem.component';
 
@@ -25,9 +27,9 @@ function Cart({ cartItems }) {
     );
 }
 
-function mapStateToProps({ cart: { cartItems } }) {
+function mapStateToProps(state) {
     return {
-        cartItems: cartItems
+        cartItems: selectCartItems(state),
     };
 }
 
