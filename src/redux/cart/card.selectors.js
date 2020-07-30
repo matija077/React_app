@@ -7,6 +7,11 @@ function selectCart(state) {
     return state.cart;
 }
 
+export var selectCartHidden = createSelector(
+    [selectCart],
+    (cart) => cart.hidden
+);
+
 export var selectCartItems = createSelector(
     [selectCart],
     (cart) => cart.cartItems
