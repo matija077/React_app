@@ -7,10 +7,11 @@ import {selectCartItems} from '../../redux/cart/card.selectors';
 
 import SubmitComponent from '../SubmitButton/SubmitButton.component';
 import CartItem from '../cart-item/cartItem.component';
+import {toggleCartHidden} from '../../redux/cart/cart.actions';
 
 import './cart.style.scss';
 
-function Cart({ cartItems, history }) {
+function Cart({ cartItems, history, dispatch }) {
     console.log(cartItems);
     return(
         <div className="cart-dropdown">
@@ -30,7 +31,12 @@ function Cart({ cartItems, history }) {
 
                 }
             </div>
-            <SubmitComponent onClick={() => history.push('/checkout')}>GO TO CHECKOUT</SubmitComponent>
+            <SubmitComponent onClick={() => {
+                history.push('/checkout');
+                dispatch(toggleCartHidden());
+            }}>
+                GO TO CHECKOUT
+            </SubmitComponent>
         </div>
     );
 }
