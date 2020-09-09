@@ -19,3 +19,10 @@ export function removeCartItem(item) {
         payload: item,
     };
 }
+
+export function removeOneCartItem(item) {
+    return {
+        type: cartActionTypes.REMOVE_ONE_CARD_ITEM,
+        payload: item,
+    };
+}
