@@ -22,13 +22,11 @@ function cartReducer(currentState = INITIAL_STATE, action) {
             };
         }
         case cartActionTypes.REMOVE_CARD_ITEM: {
-            let cartItemsRemoved = currentState.cartItems.splice(
-                currentState.cartItems.indexOf(action.payload)
-            );
-
             return {
                 ...currentState,
-                cartItems: [...cartItemsRemoved],
+                cartItems: currentState.cartItems.filter(
+                    cartItem => cartItem.id !== action.payload.id
+                )
             };
         }
         default: {
