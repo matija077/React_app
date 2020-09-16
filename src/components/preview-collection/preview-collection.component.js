@@ -5,7 +5,7 @@ import './preview-collection.style.scss';
 import ItemCollection from '../item-collection/item-collection.component';
 
 function PreviewCollection({ title, items, ...rest }) {
-    var filterItemsValue = 4;
+    var filterItemsThreshold = 4;
 
     return (
         <div className="collection-preview">
@@ -13,7 +13,7 @@ function PreviewCollection({ title, items, ...rest }) {
             <div className="preview">
             {
                 items
-                    .filter((item, index) => index < filterItemsValue)
+                    .filter((item, index) => index < filterItemsThreshold)
                     .map((item) => (
                         <ItemCollection key={item.id} item={item}></ItemCollection>
                     )
