@@ -16,36 +16,40 @@ import './header.style.scss';
 import {ReactComponent as Logo} from '../../assets/4.3 crown.svg.svg';
 import {auth} from './../../firebase/firebase.utils';
 
+import { HeaderContainer, LogoContainer, OptionsContainer,
+    OptionLink, OptionDiv
+} from './header.styles';
+
 function Header({currentUser, hidden, ...rest}) {
     console.log(hidden);
     return(
-        <div className="header">
-            <Link to="/" className="logo-container">
+        <HeaderContainer>
+            <LogoContainer to="/">
                 <Logo className="logo"></Logo>
-            </Link>
-            <div className="options">
-                <Link to="/shop" className="option">
+            </LogoContainer>
+            <OptionsContainer>
+                <OptionLink to="/shop">
                     SHOP
-                </Link>
-                <Link to="/shop" className="option">
+                </OptionLink>
+                <OptionLink to="/shop">
                     CONTACT
-                </Link>
+                </OptionLink>
                 {currentUser ?
-                    <div className="option" onClick={() =>
+                    <OptionDiv onClick={() =>
                         auth.signOut()}>
                         SIGN OUT
-                    </div>
+                    </OptionDiv>
                 :
-                    <Link to="/signin" className="option">SIGN IN</Link>
+                    <OptionLink to="/signin" >SIGN IN</OptionLink>
                 }
                     <CartIcon></CartIcon>
-            </div>
+            </OptionsContainer>
             {hidden ?
                 null
             :
                 <Cart></Cart>
             }
-        </div>
+        </HeaderContainer>
     );
 }
 
