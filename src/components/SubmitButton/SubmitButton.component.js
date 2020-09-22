@@ -1,17 +1,14 @@
 import React from 'react';
 
-import './SubmitButton.style.scss';
+import { SubmitButtonContainer } from './SubmitButton.styles';
 
-function SubmitComponent({children, isGoogleSignIn, inverted, ...otherProps}) {
+function SubmitComponent({children, ...props}) {
    // console.log(otherProps.onClick);
     return(
-        <button
-            className={`${inverted ? 'inverted' : '' }
-            ${isGoogleSignIn ? 'google-sign-in' : '' } custom-button`}
-            {...otherProps}
+        <SubmitButtonContainer {...props}
         >
             {children}
-        </button>
+        </SubmitButtonContainer>
 
     );
 }
