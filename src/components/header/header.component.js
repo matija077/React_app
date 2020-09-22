@@ -17,7 +17,7 @@ import {ReactComponent as Logo} from '../../assets/4.3 crown.svg.svg';
 import {auth} from './../../firebase/firebase.utils';
 
 import { HeaderContainer, LogoContainer, OptionsContainer,
-    OptionLink, OptionDiv
+    OptionLink
 } from './header.styles';
 
 function Header({currentUser, hidden, ...rest}) {
@@ -35,10 +35,10 @@ function Header({currentUser, hidden, ...rest}) {
                     CONTACT
                 </OptionLink>
                 {currentUser ?
-                    <OptionDiv onClick={() =>
+                    <OptionLink as='div' onClick={() =>
                         auth.signOut()}>
                         SIGN OUT
-                    </OptionDiv>
+                    </OptionLink>
                 :
                     <OptionLink to="/signin" >SIGN IN</OptionLink>
                 }
