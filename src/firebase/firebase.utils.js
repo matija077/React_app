@@ -83,6 +83,23 @@ export async function addCollectionsAndDocuments(collectionKey, objectsToAdd) {
     return await batchObject.commit();
 }
 
+export function convertCollectionSnapshotToMap(collections) {
+    const transformedCollections = collections.docs.map(
+        (doc) => {
+            const {title, items} = doc.data();
+
+            return {
+                routeName: encodeURI(title.toString().toLowerCase()),
+                id: doc.id,
+                title,
+                items
+            };
+        }
+    );
+
+    console.log(transformedCollections);
+}
+
 export const signInWithGoogle = signInWithGoogle2.bind(this);
 
 export default firebase;
