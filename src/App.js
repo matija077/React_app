@@ -11,9 +11,11 @@ import SingInAndSingUpPage from './pages/sign-in-sign-up/sign-in-sign-up';
 import HomePage from './pages/homepage/homepage';
 import Shop from './pages/shop/shop';
 import CheckoutPage from './pages/checkout/checkout';
-import {auth, createUserProfileDocument} from './firebase/firebase.utils';
+import {auth, createUserProfileDocument, addCollectionsAndDocuments} from './firebase/firebase.utils';
 import {setCurrentUser} from './redux/user/user.actions';
 import {selectCurrentUser} from './redux/user/user.selectors';
+
+import { selectCollectionForPreview } from './redux/shop/shop.selectors';
 
 class App extends React.Component {
   constructor() {
@@ -44,7 +46,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const {setCurrentUser} = this.props;
+    const { setCurrentUser, collectionsArray } = this.props;
 
     this.unsubscribeFromAuth = auth.onAuthStateChanged(
       createUser.bind(this));
@@ -66,6 +68,11 @@ class App extends React.Component {
           setCurrentUser(userAuth);
       }
     }
+
+    /*addCollectionsAndDocuments('collections',
+      collectionsArray.map((title, items) => ({ title, items }))
+    ).then((result) => console.log(result))
+      .catch((result) => console.log(result))*/
 }
 
   componentWillUnmount() {
@@ -99,6 +106,7 @@ class App extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
+  collectionsArray: selectCollectionForPreview,
 });
 
 function mapDispatchToProps(dispatch) {
@@ -108,3 +116,4 @@ function mapDispatchToProps(dispatch) {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
+// https://github.com/zhangmyihua/lesson-26-complete

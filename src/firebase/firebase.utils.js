@@ -69,6 +69,20 @@ export async function createUserProfileDocument(userAuth, additionalData) {
     return userRef;
 }
 
+export async function addCollectionsAndDocuments(collectionKey, objectsToAdd) {
+    const collectionRef = firestore.collection(collectionKey);
+
+    console.log(collectionRef);
+
+    const batchObject = firestore.batch();
+    objectsToAdd.forEach(obj => {
+        const newDocRec = collectionRef.doc();
+        batchObject.set(newDocRec, obj);
+    });
+
+    return await batchObject.commit();
+}
+
 export const signInWithGoogle = signInWithGoogle2.bind(this);
 
 export default firebase;
