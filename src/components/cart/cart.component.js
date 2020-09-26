@@ -5,17 +5,23 @@ import {withRouter} from 'react-router-dom';
 
 import {selectCartItems} from '../../redux/cart/card.selectors';
 
-import SubmitComponent from '../SubmitButton/SubmitButton.component';
 import CartItem from '../cart-item/cartItem.component';
 import {toggleCartHidden} from '../../redux/cart/cart.actions';
 
-import './cart.style.scss';
+// import './cart.style.scss';
+
+import {
+    CartDropdownButton,
+    CartDropdownContainer,
+    CartItemsContainer,
+    EmptyMessageContainer
+} from './cart.styles';
 
 function Cart({ cartItems, history, dispatch }) {
     console.log(cartItems);
     return(
-        <div className="cart-dropdown">
-            <div className="cart-items">
+        <CartDropdownContainer>
+            <CartItemsContainer>
                 {
                     cartItems.length ?
                         cartItems.map(cartItem =>
@@ -25,19 +31,19 @@ function Cart({ cartItems, history, dispatch }) {
                             </CartItem>
                         )
                     :
-                        <span className="empty-message">
+                        <EmptyMessageContainer>
                             Your cart is empty
-                        </span>
+                        </EmptyMessageContainer>
 
                 }
-            </div>
-            <SubmitComponent onClick={() => {
+            </CartItemsContainer>
+            <CartDropdownButton onClick={() => {
                 history.push('/checkout');
                 dispatch(toggleCartHidden());
             }}>
                 GO TO CHECKOUT
-            </SubmitComponent>
-        </div>
+            </CartDropdownButton>
+        </CartDropdownContainer>
     );
 }
 
