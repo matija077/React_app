@@ -14,4 +14,6 @@ jobs:
           node-version: 12
       - run: npm ci
       - run: yarn test
+        env:
+          CI: ""
       - run: yarn build
