@@ -1,0 +1,17 @@
+name: Continuous Integration
+
+on:
+  [pull]
+    branches: [master]
+
+jobs:
+  first:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: npm ci
+      - run: yarn test
+      - run: yarn build
