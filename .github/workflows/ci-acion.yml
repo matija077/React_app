@@ -6,7 +6,7 @@ on:
 
 jobs:
   first:
-    runs-on: ${{os}}
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os:
