@@ -2,6 +2,12 @@ name: Continuous Integration
 
 on:
   push:
+    branches-ignore: [master]
+<<<<<<< HEAD
+  pull_request:
+=======
+  pull request:
+>>>>>>> b3e2356baef52e0022fa4b52fd99b68b2ee60c5c
     branches: [master]
 
 jobs:
