@@ -1,7 +1,7 @@
 name: Continuous Integration Testing
 
 on:
-  pull_request:
+  push:
     branches: [dev]
 
 jobs:
