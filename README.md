@@ -1,4 +1,5 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![codecov](https://codecov.io/gh/matija077/React_app/branch/master/graph/badge.svg?token=FEAlsb0GOW)](undefined)
 
 ## Available Scripts
 
