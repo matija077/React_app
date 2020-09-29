@@ -16,7 +16,7 @@ on:
      runs-on: ubuntu-latest
      steps:
       - name: automerge
-      uses: "pascalgn/automerge-action@c29cef1b62bfb675777896255a70c69fc01bcfe4"
-      env:
-        GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        uses: "pascalgn/automerge-action@c29cef1b62bfb675777896255a70c69fc01bcfe4"
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
