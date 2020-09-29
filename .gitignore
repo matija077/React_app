@@ -6,7 +6,9 @@
 .pnp.js
 
 # testing
-/coverage
+/coverage/*
+!coverage/clover.xml
+
 
 # production
 /build

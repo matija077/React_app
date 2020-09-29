@@ -15,12 +15,14 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
+      - run: npm ci
+      - run: yarn test
       - uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           file: ./coverage/clover.xml
-      - run: npm ci
-      - run: yarn test
+          directory: ./coverage/
+          fail_ci_if_error: true
       - run: yarn build
         env:
           CI: ""
