@@ -21,7 +21,7 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           file: clover.xml
-          directory: ./coverage/
+          directory: ./
           fail_ci_if_error: true
       - run: yarn build
         env:
