@@ -70,6 +70,7 @@ export async function createUserProfileDocument(userAuth, additionalData) {
 }
 
 export async function addCollectionsAndDocuments(collectionKey, objectsToAdd) {
+    console.log(objectsToAdd);
     const collectionRef = firestore.collection(collectionKey);
 
     console.log(collectionRef);
@@ -97,7 +98,10 @@ export function convertCollectionSnapshotToMap(collections) {
         }
     );
 
-    console.log(transformedCollections);
+    return transformedCollections.reduce((acc, collection) => {
+        acc[collection.title.toString().toLowerCase()] = collection;
+        return acc;
+    }, {})
 }
 
 export const signInWithGoogle = signInWithGoogle2.bind(this);

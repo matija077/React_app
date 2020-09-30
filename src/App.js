@@ -70,7 +70,7 @@ class App extends React.Component {
     }
 
     /*addCollectionsAndDocuments('collections',
-      collectionsArray.map((title, items) => ({ title, items }))
+      collectionsArray.map(({title, items}) => ({ title, items }))
     ).then((result) => console.log(result))
       .catch((result) => console.log(result))*/
 }
