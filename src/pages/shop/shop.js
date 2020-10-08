@@ -5,14 +5,22 @@ import { connect } from 'react-redux';
 import CollectionsOverview from '../../components/collections-overview/collections-overview.component';
 import CollectionPage from '../collection/collection';
 
+import SpinnerWrapper from '../../components/spinner/spinnerWrapper.component';
+
 import { firestore, convertCollectionSnapshotToMap } from '../../firebase/firebase.utils';
 import {updateCollection} from '../../redux/shop/shop.actions';
+
+const CollectionsOverviewWithSpinner = SpinnerWrapper(CollectionsOverview);
+const CollectionsPageWithSpinner = SpinnerWrapper(CollectionPage);
+
 class Shop extends React.Component {
     constructor() {
         super();
 
+    };
 
-
+    state = {
+        loading: true
     };
 
     unsubscribeFromSnapshot;
@@ -24,17 +32,38 @@ class Shop extends React.Component {
             async function snapshotChanged(snapshot) {
                 const collectionsMap = convertCollectionSnapshotToMap(snapshot);
                 updateCollections(collectionsMap);
-            }
+                this.setState({loading: false});
+            }.bind(this)
         );
     }
 
     render() {
         const { match } = this.props;
+        const { loading } = this.state;
 
         return(
             <div className="shop-page">
-                <Route exact path={`${match.path}`} component={CollectionsOverview}></Route>
-                <Route path={`${match.path}/:collectionId`} component={CollectionPage}></Route>
+                <Route
+                    exact path={`${match.path}`}
+                    render={props =>
+                        (<CollectionsOverviewWithSpinner
+                            isLoading={loading}
+                            {...props}
+                        />)
+                    }
+                >
+                </Route>
+                <Route
+                    path={`${match.path}/:collectionId`}
+                    render={ props => (
+                        <CollectionsPageWithSpinner
+                            isLoading={ loading }
+                            {...props}
+                        >
+                        </CollectionsPageWithSpinner>
+                    )}
+                >
+                </Route>
             </div>
         );
     }

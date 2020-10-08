@@ -11,14 +11,19 @@ export var selectCollections = createSelector(
 
 export var selectCollectionForPreview = createSelector(
     [selectCollections],
-    collections => Object.keys(collections).map(
-        key => collections[key]
-    )
+    collections => (collections ?
+        Object.keys(collections).map(
+            key => collections[key])
+    :
+        [])
 );
 
 export function selectCollection(collectionUrlParam) {
     return createSelector(
         [selectCollections],
-        collections => collections[collectionUrlParam]
+        collections => (collections ?
+            collections[collectionUrlParam]
+        :
+            null)
     );
 }
