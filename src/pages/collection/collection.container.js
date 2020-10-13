@@ -4,7 +4,7 @@ import { compose } from 'redux';
 
 import { selectorIsCollectionLoaded } from '../../redux/shop/shop.selectors';
 
-import SpinnerWrapper from '../../components/spinner/spinnerWrapper.component';
+import WithSpinner from '../../components/spinner/with-spinner.component';
 import CollectionPage from './collection';
 
 const mapStateToProps = createStructuredSelector({
@@ -13,7 +13,7 @@ const mapStateToProps = createStructuredSelector({
 
 const CollectionsPageContainer = compose(
     connect(mapStateToProps),
-    SpinnerWrapper
+    WithSpinner
 )(CollectionPage);
 
 export default CollectionsPageContainer;
