@@ -1,6 +1,8 @@
 import { createSelector } from 'reselect';
 
 function selectShop(state) {
+    // console.log("selectShop -> state", state)
+
     return state.shop;
 }
 
@@ -27,3 +29,13 @@ export function selectCollection(collectionUrlParam) {
             null)
     );
 }
+
+export var selectIsCollectionFetching = createSelector(
+    [selectShop],
+    shop => shop.isFetching
+);
+
+export var selectorIsCollectionLoaded = createSelector(
+    [selectShop],
+    shop => !!shop.collections
+);
