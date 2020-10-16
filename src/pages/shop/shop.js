@@ -20,7 +20,7 @@ class Shop extends React.Component {
     unsubscribeFromSnapshot;
 
     componentDidMount() {
-        const { fetchCollectionStartAsync } = this.props;
+        const { fetchCollectionStart } = this.props;
 
         fetchCollectionStart();
     }
