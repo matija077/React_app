@@ -23,12 +23,12 @@ export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
 // we can use any provider we want I.E twitter...
-const provider = new firebase.auth.GoogleAuthProvider();
+export const googleProvider = new firebase.auth.GoogleAuthProvider();
 //
-provider.setCustomParameters({ prompt: 'select_account'});
+googleProvider.setCustomParameters({ prompt: 'select_account'});
 
 function signInWithGoogle2(callback) {
-     auth.signInWithPopup(provider).then(function(result) {
+     auth.signInWithPopup(googleProvider).then(function(result) {
          //console.log(callback);
          if (callback) callback();
      }).catch(function(error) {

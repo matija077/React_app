@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux'
 
 import './sign-in.style.scss';
 
@@ -7,6 +8,7 @@ import SubmitButton from '../SubmitButton/SubmitButton.component';
 
 import { auth, signInWithGoogle }from '../../firebase/firebase.utils';
 import preventDefaultFunction from '../functions/preventDefault';
+import { googleSignInStart  } from '../../redux/user/user.actions';
 class SignIn extends React.Component {
     constructor(props) {
         super(props);
@@ -54,8 +56,9 @@ class SignIn extends React.Component {
 
     render() {
         var {email, password, history} = this.state;
+        const { googleSignInStart } = this.props;
 
-        const preventDefaultBind = preventDefaultFunction.bind(this, signInWithGoogle);
+        const preventDefaultBind = preventDefaultFunction.bind(null, googleSignInStart);
 
         function redirect(history) {
             history.goBack();
@@ -87,7 +90,7 @@ class SignIn extends React.Component {
                     </FormInput>
 
                     <div className="submit-buttons">
-                        <SubmitButton type="input">Sign In</SubmitButton>
+                        <SubmitButton type="submit">Sign In</SubmitButton>
                         <SubmitButton
                             onClick={(event) => preventDefaultBind(event)}
                             isGoogleSignIn>
@@ -100,4 +103,8 @@ class SignIn extends React.Component {
     }
 }
 
-export default SignIn;
+const mapDisaptchToProps = (dispatch) => ({
+    googleSignInStart: () => dispatch(googleSignInStart())
+});
+
+export default connect(null, mapDisaptchToProps)(SignIn);
