@@ -10,7 +10,8 @@ import {
 import {
     googleProvider,
     auth,
-    createUserProfileDocument
+    createUserProfileDocument,
+    getCurrentUser
 } from '../../firebase/firebase.utils';
 
 function* SignInWithUser(user) {
@@ -46,6 +47,18 @@ function* signInWithEmail({payload: {email, password}}) {
     }
 }
 
+function* isUserAuthenticated() {
+    try {
+        const userAuth = yield getCurrentUser();
+
+        if (userAuth) {
+            yield SignInWithUser(userAuth);
+        }
+    } catch(error) {
+        yield put(signInFailure(error));
+    }
+}
+
 function* onGoogleSignInStart() {
     yield takeLatest(
         userActionTypes.GOOGLE_SIGN_IN_START,
@@ -54,17 +67,23 @@ function* onGoogleSignInStart() {
 }
 
 function* onEmailSignInStart() {
-    console.log("sta je prije");
     yield takeLatest(
         userActionTypes.EMAIL_SIGN_IN_START,
         signInWithEmail
     );
-    console.log("sta je prije2");
+}
+
+function* onCheckUserSession() {
+    yield takeLatest(
+        userActionTypes.CHECK_USER_SESSION,
+        isUserAuthenticated
+    );
 }
 
 export default function* userSaga() {
     yield all([
         call(onGoogleSignInStart),
-        call(onEmailSignInStart)
+        call(onEmailSignInStart),
+        call(onCheckUserSession),
     ])
 }

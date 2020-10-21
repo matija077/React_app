@@ -26,3 +26,9 @@ export function signInFailure(error) {
         payload: error
     }
 };
+
+export function checkUserSession() {
+    return {
+        type: userActionTypes.CHECK_USER_SESSION,
+    }
+};

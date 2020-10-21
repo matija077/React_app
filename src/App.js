@@ -11,7 +11,9 @@ import SingInAndSingUpPage from './pages/sign-in-sign-up/sign-in-sign-up';
 import HomePage from './pages/homepage/homepage';
 import Shop from './pages/shop/shop';
 import CheckoutPage from './pages/checkout/checkout';
+
 import {selectCurrentUser} from './redux/user/user.selectors';
+import { checkUserSession } from './redux/user/user.actions';
 
 import { selectCollectionForPreview } from './redux/shop/shop.selectors';
 
@@ -44,8 +46,9 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const { setCurrentUser, collectionsArray } = this.props;
+    const { setCurrentUser, collectionsArray, checkUserSession } = this.props;
 
+    checkUserSession();
     /*this.unsubscribeFromAuth = auth.onAuthStateChanged(
       createUser.bind(this));
 
@@ -107,11 +110,11 @@ const mapStateToProps = createStructuredSelector({
   collectionsArray: selectCollectionForPreview,
 });
 
-/*function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
-    setCurrentUser: user => dispatch(setCurrentUser(user)),
+    checkUserSession: () => dispatch(checkUserSession())
   };
-};*/
+};
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 // https://github.com/zhangmyihua/lesson-26-complete
