@@ -63,6 +63,7 @@ function* isUserAuthenticated() {
 
 function* signOut() {
     try {
+        yield auth.signOut();
         yield put(signOutSuccess());
     } catch(error) {
         yield put(signInFailure(error));
