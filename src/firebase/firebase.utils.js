@@ -104,6 +104,11 @@ export function convertCollectionSnapshotToMap(collections) {
     }, {})
 }
 
+/**
+ * it is necessary to unsubscribe from observer immediatly and
+ * resolve it using promise based pattern because
+ * this should be used with generators
+ */
 export function getCurrentUser() {
     return new Promise((resolve, reject) =>{
         const unsubscribe = auth.onAuthStateChanged(
