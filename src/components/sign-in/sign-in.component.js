@@ -6,9 +6,8 @@ import './sign-in.style.scss';
 import FormInput from '../from-input/form-input.component';
 import SubmitButton from '../SubmitButton/SubmitButton.component';
 
-import { auth, signInWithGoogle }from '../../firebase/firebase.utils';
 import preventDefaultFunction from '../functions/preventDefault';
-import { googleSignInStart  } from '../../redux/user/user.actions';
+import { googleSignInStart, emailSignInStart  } from '../../redux/user/user.actions';
 class SignIn extends React.Component {
     constructor(props) {
         super(props);
@@ -34,23 +33,16 @@ class SignIn extends React.Component {
         event.preventDefault();
 
         const {email, password} = this.state;
+        const {emailSignInStart} = this.props;
 
-        try {
-            await auth.signInWithEmailAndPassword(email, password);
-
-            this.clearState();
-        } catch(error) {
-            console.log(error);
-        }
-
-        //console.dir(event.target);
+        emailSignInStart(email, password);
     }
 
     handleChange(event) {
-        const {name, value} = event.target;
+        const {name: formInputName, value} = event.target;
 
         this.setState({
-            [name]: value
+            [formInputName]: value
         });
     }
 
@@ -103,8 +95,10 @@ class SignIn extends React.Component {
     }
 }
 
-const mapDisaptchToProps = (dispatch) => ({
-    googleSignInStart: () => dispatch(googleSignInStart())
+const mapDispatchToProps = (dispatch) => ({
+    googleSignInStart: () => dispatch(googleSignInStart()),
+    emailSignInStart: (email, password) =>
+        dispatch(emailSignInStart({email, password}))
 });
 
-export default connect(null, mapDisaptchToProps)(SignIn);
+export default connect(null, mapDispatchToProps)(SignIn);

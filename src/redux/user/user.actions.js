@@ -1,29 +1,8 @@
 import userActionTypes from './user.types';
 
-export function setCurrentUser(user) {
-    return {
-        type: userActionTypes.SET_CURRENT_USER,
-        payload: user,
-    };
-};
-
 export function googleSignInStart() {
     return {
         type: userActionTypes.GOOGLE_SIGN_IN_START
-    }
-};
-
-export function googleSignInSuccess(user) {
-    return {
-        type: userActionTypes.GOOGLE_SIGN_IN_SUCCESS,
-        payload: user
-    }
-};
-
-export function googleSignInFailure(error) {
-    return {
-        type: userActionTypes.GOOGLE_SIGN_IN_FAILURE,
-        payload: error
     }
 };
 
@@ -34,16 +13,16 @@ export function emailSignInStart(emailAndPassword) {
     }
 };
 
-export function emailSignInSuccess(user) {
+export function signInSuccess(user) {
     return {
-        type: userActionTypes.EMAIL_SIGN_IN_SUCCESS,
+        type: userActionTypes.SIGN_IN_SUCCESS,
         payload: user
     }
 };
 
-export function emailSignInFailure(error) {
+export function signInFailure(error) {
     return {
-        type: userActionTypes.EMAIL_SIGN_IN_FAILURE,
+        type: userActionTypes.SIGN_IN_FAILURE,
         payload: error
     }
 };

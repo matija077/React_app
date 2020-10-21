@@ -11,8 +11,6 @@ import SingInAndSingUpPage from './pages/sign-in-sign-up/sign-in-sign-up';
 import HomePage from './pages/homepage/homepage';
 import Shop from './pages/shop/shop';
 import CheckoutPage from './pages/checkout/checkout';
-import {auth, createUserProfileDocument, addCollectionsAndDocuments} from './firebase/firebase.utils';
-import {setCurrentUser} from './redux/user/user.actions';
 import {selectCurrentUser} from './redux/user/user.selectors';
 
 import { selectCollectionForPreview } from './redux/shop/shop.selectors';
@@ -109,11 +107,11 @@ const mapStateToProps = createStructuredSelector({
   collectionsArray: selectCollectionForPreview,
 });
 
-function mapDispatchToProps(dispatch) {
+/*function mapDispatchToProps(dispatch) {
   return {
     setCurrentUser: user => dispatch(setCurrentUser(user)),
   };
-};
+};*/
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);
 // https://github.com/zhangmyihua/lesson-26-complete
