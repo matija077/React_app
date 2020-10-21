@@ -48,6 +48,6 @@ export function signOutFailure(error) {
 
 export function signOutSuccess() {
     return {
-        type: userActionTypes.SIGN_IN_SUCCESS,
+        type: userActionTypes.SIGN_OUT_SUCCESS,
     }
 };
