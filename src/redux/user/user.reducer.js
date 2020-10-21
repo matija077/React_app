@@ -14,10 +14,18 @@ function userReducer(currentState = INITIAL_STATE, action) {
                 error: null,
             };
         }
+        case userActionTypes.SIGN_OUT_FAILURE:
         case userActionTypes.SIGN_IN_FAILURE: {
             return {
                 ...currentState,
                 error: action.payload,
+            };
+        }
+        case userActionTypes.SIGN_OUT_SUCCESS: {
+            return {
+                ...currentState,
+                currentUser: null,
+                error: null
             };
         }
         default: {

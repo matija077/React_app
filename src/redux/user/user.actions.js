@@ -32,3 +32,22 @@ export function checkUserSession() {
         type: userActionTypes.CHECK_USER_SESSION,
     }
 };
+
+export function signOutStart() {
+    return {
+        type: userActionTypes.SIGN_OUT_START,
+    }
+};
+
+export function signOutFailure(error) {
+    return {
+        type: userActionTypes.SIGN_IN_FAILURE,
+        payload: error
+    }
+};
+
+export function signOutSuccess() {
+    return {
+        type: userActionTypes.SIGN_IN_SUCCESS,
+    }
+};
