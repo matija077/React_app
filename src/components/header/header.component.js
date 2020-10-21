@@ -21,7 +21,6 @@ import { HeaderContainer, LogoContainer, OptionsContainer,
 } from './header.styles';
 
 function Header({currentUser, hidden, ...rest}) {
-    console.log(hidden);
     return(
         <HeaderContainer>
             <LogoContainer to="/">

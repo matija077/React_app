@@ -1,12 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux'
 
 import './sign-in.style.scss';
 
 import FormInput from '../from-input/form-input.component';
 import SubmitButton from '../SubmitButton/SubmitButton.component';
 
-import { auth, signInWithGoogle }from '../../firebase/firebase.utils';
 import preventDefaultFunction from '../functions/preventDefault';
+import { googleSignInStart, emailSignInStart  } from '../../redux/user/user.actions';
 class SignIn extends React.Component {
     constructor(props) {
         super(props);
@@ -32,30 +33,24 @@ class SignIn extends React.Component {
         event.preventDefault();
 
         const {email, password} = this.state;
+        const {emailSignInStart} = this.props;
 
-        try {
-            await auth.signInWithEmailAndPassword(email, password);
-
-            this.clearState();
-        } catch(error) {
-            console.log(error);
-        }
-
-        //console.dir(event.target);
+        emailSignInStart(email, password);
     }
 
     handleChange(event) {
-        const {name, value} = event.target;
+        const {name: formInputName, value} = event.target;
 
         this.setState({
-            [name]: value
+            [formInputName]: value
         });
     }
 
     render() {
         var {email, password, history} = this.state;
+        const { googleSignInStart } = this.props;
 
-        const preventDefaultBind = preventDefaultFunction.bind(this, signInWithGoogle);
+        const preventDefaultBind = preventDefaultFunction.bind(null, googleSignInStart);
 
         function redirect(history) {
             history.goBack();
@@ -87,7 +82,7 @@ class SignIn extends React.Component {
                     </FormInput>
 
                     <div className="submit-buttons">
-                        <SubmitButton type="input">Sign In</SubmitButton>
+                        <SubmitButton type="submit">Sign In</SubmitButton>
                         <SubmitButton
                             onClick={(event) => preventDefaultBind(event)}
                             isGoogleSignIn>
@@ -100,4 +95,10 @@ class SignIn extends React.Component {
     }
 }
 
-export default SignIn;
+const mapDispatchToProps = (dispatch) => ({
+    googleSignInStart: () => dispatch(googleSignInStart()),
+    emailSignInStart: (email, password) =>
+        dispatch(emailSignInStart({email, password}))
+});
+
+export default connect(null, mapDispatchToProps)(SignIn);
