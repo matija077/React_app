@@ -26,3 +26,9 @@ export function removeOneCartItem(item) {
         payload: item,
     };
 }
+
+export function clearCart() {
+    return {
+        type: cartActionTypes.CLEAR_CART
+    };
+}
