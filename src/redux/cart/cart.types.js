@@ -5,3 +5,5 @@ export const cartActionTypes = {
     REMOVE_ONE_CARD_ITEM: "REMOVE_ONE_CARD_ITEM",
     CLEAR_CART: 'CLEAR_CART'
 };
+
+export default cartActionTypes;
