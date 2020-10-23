@@ -31,6 +31,9 @@ function Header({currentUser, hidden, ...rest}) {
                 <OptionLink to="/shop">
                     CONTACT
                 </OptionLink>
+                <OptionLink to="/checkout">
+                    CHECKOUT
+                </OptionLink>
                 {currentUser ?
                     <OptionLink as='div' onClick={signOutStart}>
                         SIGN OUT

@@ -15,6 +15,9 @@ function Cart({ cartItems, history, dispatch }) {
     console.log(cartItems);
     return(
         <div className="cart-dropdown">
+            <div className="cart-clear-items">
+                &#x274C;
+            </div>
             <div className="cart-items">
                 {
                     cartItems.length ?
