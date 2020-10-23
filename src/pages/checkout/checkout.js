@@ -4,6 +4,7 @@ import {createStructuredSelector} from 'reselect';
 //test
 import  CheckoutItem from '../../components/checkout-item/checkout-item.component';
 import StripeCheckoutButton from '../../components/stripe-button/stripe_button.component';
+import ClearCart  from '../../components/clear-cart/clearCart.component';
 
 import  {selectCartItems, selectCartTotal} from '../../redux/cart/card.selectors'
 
@@ -29,6 +30,7 @@ function CheckoutPage({cartItems, total}) {
                 <div className="header-block">
                     <span>Remove</span>
                 </div>
+                <ClearCart className={"header-block"}></ClearCart>
             </div>
             <div>
                 {

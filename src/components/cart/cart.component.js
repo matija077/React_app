@@ -8,13 +8,14 @@ import {selectCartItems} from '../../redux/cart/card.selectors';
 import SubmitComponent from '../SubmitButton/SubmitButton.component';
 import CartItem from '../cart-item/cartItem.component';
 import {toggleCartHidden} from '../../redux/cart/cart.actions';
+import ClearCart  from '../clear-cart/clearCart.component';
 
 import './cart.style.scss';
 
 function Cart({ cartItems, history, dispatch }) {
-    console.log(cartItems);
     return(
         <div className="cart-dropdown">
+            <ClearCart></ClearCart>
             <div className="cart-items">
                 {
                     cartItems.length ?
@@ -45,4 +46,6 @@ const mapStateToProps = createStructuredSelector({
     cartItems: selectCartItems,
 })
 
-export default withRouter(connect(mapStateToProps)(Cart));
+export default withRouter(connect(
+    mapStateToProps
+)(Cart));

@@ -38,6 +38,13 @@ function cartReducer(currentState = INITIAL_STATE, action) {
                 )
             };
         }
+        case cartActionTypes.CLEAR_CART: {
+            return {
+                ...currentState,
+                cartItems: [],
+                hidden: true
+            };
+        }
         default: {
             return currentState;
         }
