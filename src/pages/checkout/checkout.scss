@@ -17,6 +17,9 @@
         text-transform: capitalize;
         width: 23%;
 
+        &:nth-last-child(2) {
+          width: 8%;
+        }
         &:last-child {
           width: 8%;
         }
