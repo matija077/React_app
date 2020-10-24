@@ -1,4 +1,4 @@
-import { takeLatest, put, all, call } from 'redux-saga/effects';
+import { takeLatest, put, all, call, takeLeading } from 'redux-saga/effects';
 
 import userActionTypes from './user.types';
 
@@ -6,7 +6,9 @@ import {
     signInSuccess,
     signInFailure,
     signOutSuccess,
-    signOutFailure
+    signOutFailure,
+    signUpFailure,
+    signUpSuccess
 } from './user.actions';
 
 import {
@@ -70,6 +72,10 @@ function* signOut() {
     }
 }
 
+function* signUp() {
+
+}
+
 function* onGoogleSignInStart() {
     yield takeLatest(
         userActionTypes.GOOGLE_SIGN_IN_START,
@@ -98,11 +104,19 @@ function* onSignOutStart() {
     );
 }
 
+function* onSignUpStart() {
+    yield takeLeading(
+      userActionTypes.SIGN_UP_START,
+      signUp
+    );
+}
+
 export default function* userSaga() {
     yield all([
         call(onGoogleSignInStart),
         call(onEmailSignInStart),
         call(onCheckUserSession),
-        call(onSignOutStart)
+        call(onSignOutStart),
+        call(onSignUpStart)
     ])
 }

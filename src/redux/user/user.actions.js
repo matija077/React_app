@@ -51,3 +51,22 @@ export function signOutSuccess() {
         type: userActionTypes.SIGN_OUT_SUCCESS,
     }
 };
+
+export function signUpStart() {
+    return {
+        type: userActionTypes.SIGN_UP_START,
+    }
+};
+
+export function signUpFailure(error) {
+    return {
+        type: userActionTypes.SIGN_UP_FAILURE,
+        payload: error
+    }
+};
+
+export function signUpSuccess() {
+    return {
+        type: userActionTypes.SIGN_UP_SUCCESS,
+    }
+};
