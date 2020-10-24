@@ -72,8 +72,17 @@ function* signOut() {
     }
 }
 
-function* signUp() {
+function* signUp({email, password, displayName}) {
+    try {
+        const { user } = yield auth.createUserWithEmailAndPassword(
+            email, password);
 
+        yield createUserProfileDocument(user, {displayName, email});
+
+        yield put(signUpSuccess());
+    } catch(error) {
+        yield put(signUpFailure(error));
+    }
 }
 
 function* onGoogleSignInStart() {

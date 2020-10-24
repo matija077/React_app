@@ -52,9 +52,10 @@ export function signOutSuccess() {
     }
 };
 
-export function signUpStart() {
+export function signUpStart(signUpObject) {
     return {
         type: userActionTypes.SIGN_UP_START,
+        payload: signUpObject
     }
 };
 
