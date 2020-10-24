@@ -52,10 +52,10 @@ export function signOutSuccess() {
     }
 };
 
-export function signUpStart(signUpObject) {
+export function signUpStart(userCredentials) {
     return {
         type: userActionTypes.SIGN_UP_START,
-        payload: signUpObject
+        payload: userCredentials
     }
 };
 
@@ -66,8 +66,9 @@ export function signUpFailure(error) {
     }
 };
 
-export function signUpSuccess() {
+export function signUpSuccess({user, additionalData}) {
     return {
         type: userActionTypes.SIGN_UP_SUCCESS,
+        payload: {user, additionalData}
     }
 };

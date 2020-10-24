@@ -7,6 +7,14 @@ var INITIAL_STATE = {
 
 function userReducer(currentState = INITIAL_STATE, action) {
     switch(action.type) {
+        case userActionTypes.SIGN_OUT_FAILURE:
+        case userActionTypes.SIGN_IN_FAILURE:
+        case userActionTypes.SIGN_OUT_FAILURE: {
+            return {
+                ...currentState,
+                error: action.payload,
+            };
+        }
         case userActionTypes.SIGN_IN_SUCCESS: {
             return {
                 ...currentState,
@@ -14,18 +22,16 @@ function userReducer(currentState = INITIAL_STATE, action) {
                 error: null,
             };
         }
-        case userActionTypes.SIGN_OUT_FAILURE:
-        case userActionTypes.SIGN_IN_FAILURE: {
-            return {
-                ...currentState,
-                error: action.payload,
-            };
-        }
         case userActionTypes.SIGN_OUT_SUCCESS: {
             return {
                 ...currentState,
                 currentUser: null,
                 error: null
+            };
+        }
+        case userActionTypes.SIGN_UP_SUCCESS: {
+            return {
+                ...currentState,
             };
         }
         default: {
