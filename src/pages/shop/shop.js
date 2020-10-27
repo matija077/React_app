@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -7,42 +7,27 @@ import CollectionsPageContainer from '../collection/collection.container';
 
 import { fetchCollectionStart } from '../../redux/shop/shop.actions';
 
-class Shop extends React.Component {
-    constructor() {
-        super();
-
-    };
-
-    state = {
-        loading: true
-    };
-
-    unsubscribeFromSnapshot;
-
-    componentDidMount() {
-        const { fetchCollectionStart } = this.props;
-
+function Shop({fetchCollectionStart, match}) {
+    useEffect(() => {
         fetchCollectionStart();
-    }
+    }, [fetchCollectionStart]);
 
-    render() {
-        const { match } = this.props;
+    console.log("sta radimoo");
 
-        return(
-            <div className="shop-page">
-                <Route
-                    exact path={`${match.path}`}
-                    component={CollectionsOverviewContainer}
-                >
-                </Route>
-                <Route
-                    path={`${match.path}/:collectionId`}
-                    component={CollectionsPageContainer}
-                >
-                </Route>
-            </div>
-        );
-    }
+    return(
+        <div className="shop-page">
+            <Route
+                exact path={`${match.path}`}
+                component={CollectionsOverviewContainer}
+            >
+            </Route>
+            <Route
+                path={`${match.path}/:collectionId`}
+                component={CollectionsPageContainer}
+            >
+            </Route>
+        </div>
+    );
 }
 
 /**
