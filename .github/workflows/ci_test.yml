@@ -15,8 +15,12 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+        working-directory: ./client
       - run: npm ci
-      - run: yarn build
       - run: yarn test
+      - run: yarn build
         env:
           CI: ""
