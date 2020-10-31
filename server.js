@@ -18,8 +18,8 @@ var stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 var app = express();
 var port = process.env.PORT || PORT_CONST;
 
-/*app.use(bodyParser.json());
-app.use(bodyParser.urlencoded);*/
+app.use(bodyParser.json());
+//app.use(bodyParser.urlencoded);
 
 app.use(cors());
 
@@ -49,6 +49,7 @@ app.post('/payment', function serve(req, res) {
     stripe.charges.create(body,
         function(stripeError, stripeResponse) {
             if (stripeError) {
+                console.log(stripeError);
                 res.status(returnCodes.error).send(
                     { error: stripeError }
                 );
