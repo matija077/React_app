@@ -15,11 +15,8 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12
-        working-directory: ./client
       - run: npm ci
+      - run: cd client && npm ci
       - run: yarn test
       - uses: codecov/codecov-action@v1
         with:
