@@ -16,6 +16,7 @@ jobs:
         with:
           node-version: 12
       - run: npm ci
+      - run: cd client && npm ci
       - run: yarn build
         env:
           CI: ""
