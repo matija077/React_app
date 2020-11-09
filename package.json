@@ -8,6 +8,7 @@
   "scripts": {
     "client": "cd client && npm start",
     "test": "cd client && npm run test",
+    "testCoverage": "cd client && npm run testCoverage",
     "build": "cd client && npm run build",
     "server": "nodemon server.js",
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
