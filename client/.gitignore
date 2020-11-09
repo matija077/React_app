@@ -8,7 +8,6 @@
 # testing
 /coverage/*
 !coverage/clover.xml
-__snapshots__
 
 # production
 /build

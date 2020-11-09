@@ -17,17 +17,17 @@ describe('test clearCart component', function describe() {
 
     it("clearCart react", function react() {
         expect.assertions(2);
-        const hb = "header-block";
+        const classNameMock = "header-block";
 
         const clearCartComponent = reactRender(<ClearCart
             store={store}
             clearCart={clearCart}
-            className={hb}
+            className={classNameMock}
         >
         </ClearCart>);
 
         expect(clearCartComponent.container.firstChild.classList.
-            contains(hb)).toBe(true);
+            contains(classNameMock)).toBe(true);
         expect(screen.getByText("\u274C")).toBeInTheDocument();
     })
 });
