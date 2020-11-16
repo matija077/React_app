@@ -18,11 +18,16 @@ import { HeaderContainer, LogoContainer, OptionsContainer,
 } from './header.styles';
 
 import CurrentUser from '../../context/current-user/current-user.context';
+import CartContext from '../../context/cart/cart.context';
 
-function Header({currentUser, hidden, ...rest}) {
+function Header({currentUser, ...rest}) {
     const currentUser2 = React.useContext(CurrentUser);
-    console.log("Header -> currentUser2", currentUser2)
     const { signOutStart } = rest;
+    var [hidden, setHidden] = React.useState(true);
+    var toggleCartHidden = function() {
+        setHidden(!hidden);
+    }
+
     return(
         <HeaderContainer>
             <LogoContainer to="/">
@@ -45,7 +50,12 @@ function Header({currentUser, hidden, ...rest}) {
                 :
                     <OptionLink to="/signin" >SIGN IN</OptionLink>
                 }
+                <CartContext.Provider value={{
+                    hidden,
+                    toggleCartHidden
+                }}>
                     <CartIcon></CartIcon>
+                </CartContext.Provider>
             </OptionsContainer>
             {hidden ?
                 null

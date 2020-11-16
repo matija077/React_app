@@ -9,7 +9,12 @@ import  {ReactComponent as ShoppingIcon} from '../../assets/11.2 shopping-bag.sv
 
 import './card-icon.styles.scss';
 
-function CartIcon({toggleCartHidden, itemCount}) {
+import CartContext from '../../context/cart/cart.context';
+
+
+function CartIcon({ itemCount}) {
+    var {toggleCartHidden} = React.useContext(CartContext);
+
     return(
         <div className="cart-icon" onClick={toggleCartHidden}>
             <ShoppingIcon className="shopping-icon"></ShoppingIcon>
