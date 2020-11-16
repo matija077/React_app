@@ -17,7 +17,11 @@ import { HeaderContainer, LogoContainer, OptionsContainer,
     OptionLink
 } from './header.styles';
 
+import CurrentUser from '../../context/current-user/current-user.context';
+
 function Header({currentUser, hidden, ...rest}) {
+    const currentUser2 = React.useContext(CurrentUser);
+    console.log("Header -> currentUser2", currentUser2)
     const { signOutStart } = rest;
     return(
         <HeaderContainer>

@@ -17,6 +17,8 @@ import { checkUserSession } from './redux/user/user.actions';
 
 import { selectCollectionForPreview } from './redux/shop/shop.selectors';
 
+import CurrentUser from './context/current-user/current-user.context';
+
 function App({checkUserSession, currentUser}) {
 
   useEffect(() => {
@@ -25,7 +27,9 @@ function App({checkUserSession, currentUser}) {
 
   return (
     <div>
-      <Header></Header>
+      <CurrentUser.Provider value={currentUser}>
+        <Header></Header>
+      </CurrentUser.Provider>
       <Switch>
         <Route component={HomePage} path='/' exact></Route>
         <Route component={Shop} path='/shop'></Route>
