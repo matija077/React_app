@@ -18,15 +18,12 @@ import { HeaderContainer, LogoContainer, OptionsContainer,
 } from './header.styles';
 
 import CurrentUser from '../../context/current-user/current-user.context';
-import CartContext from '../../context/cart/cart.context';
+import { CartContext } from '../../providers/cart/cart.provider';
 
 function Header({currentUser, ...rest}) {
     const currentUser2 = React.useContext(CurrentUser);
     const { signOutStart } = rest;
-    var [hidden, setHidden] = React.useState(true);
-    var toggleCartHidden = function() {
-        setHidden(!hidden);
-    }
+    const { hidden } = React.useContext(CartContext);
 
     return(
         <HeaderContainer>
@@ -50,12 +47,7 @@ function Header({currentUser, ...rest}) {
                 :
                     <OptionLink to="/signin" >SIGN IN</OptionLink>
                 }
-                <CartContext.Provider value={{
-                    hidden,
-                    toggleCartHidden
-                }}>
-                    <CartIcon></CartIcon>
-                </CartContext.Provider>
+                <CartIcon></CartIcon>
             </OptionsContainer>
             {hidden ?
                 null
@@ -69,7 +61,7 @@ function Header({currentUser, ...rest}) {
 // state is actualy yroot reducer
 const mapStateToProps = createStructuredSelector({
     currentUser: selectCurrentUser,
-    hidden: selectCartHidden,
+    hiddenRedux: selectCartHidden,
 });
 
 const mapDispatchToProps = (dispatch) => {
