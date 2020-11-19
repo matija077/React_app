@@ -1,6 +1,12 @@
 import React from 'react';
+//import { clearCart } from '../../redux/cart/cart.actions';
 
-import { removeOneItemFromCart, addItemToCart  } from './cart.utils';
+import {
+    removeOneItemFromCart,
+    addItemToCart,
+    filterItemFromCart,
+    getCartItemsCount
+} from './cart.utils';
 
 var cartContext = {
     hidden: true,
@@ -9,9 +15,10 @@ var cartContext = {
     toggleHidden: () => {},
     addItem: () => {},
     removeItem: () => {},
-    clearItemFromCart: () => {}
+    clearItemFromCart: () => {},
+    clearCart: () => {}
 };
-export var CartContext = React.createContext({cartContext});
+var CartContext = React.createContext({cartContext});
 
 function CartProvider({ children }) {
     var [hidden, setHidden] = React.useState(cartContext.hidden);
@@ -31,12 +38,23 @@ function CartProvider({ children }) {
         setCartItems(newItems);
         */
     }
-    var removeItem = function() {
-
+    var removeItem = function(item) {
+        setCartItems(removeOneItemFromCart(cartItems, item));
     }
-    var clearItemFromCart = function() {
-
+    var clearItemFromCart = function(item) {
+        setCartItems(filterItemFromCart(cartItems, item));
     }
+    var clearCart = function(){
+        console.log("radim");
+        setCartItems([]);
+    }
+
+    React.useEffect(
+        () => {
+          setCartItemsCount(getCartItemsCount(cartItems));
+        }
+        , [cartItems]
+    );
 
     return (
         <CartContext.Provider
@@ -45,7 +63,10 @@ function CartProvider({ children }) {
                 cartItemsCount,
                 cartItems,
                 toggleCartHidden,
-                addItem
+                addItem,
+                removeItem,
+                clearItemFromCart,
+                clearCart
             }}
         >
             {children}
@@ -53,4 +74,5 @@ function CartProvider({ children }) {
     );
 }
 
+export { CartContext };
 export default CartProvider;

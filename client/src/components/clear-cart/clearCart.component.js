@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { clearCart } from '../../redux/cart/cart.actions';
+// import { clearCart } from '../../redux/cart/cart.actions';
+import { useClearCart as clearCart } from '../../providers/cart/cart.provider';
 
 import { ClearCartItemsContainer } from './clearCart.styles';
 

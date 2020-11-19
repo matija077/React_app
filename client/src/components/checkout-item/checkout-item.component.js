@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux'
 
+import { CartContext } from '../../providers/cart/cart.provider';
+
 import './checkout-item.style.scss';
 
 import {removeCartItem, addCartItem, removeOneCartItem} from '../../redux/cart/cart.actions'
@@ -8,12 +10,16 @@ import {removeCartItem, addCartItem, removeOneCartItem} from '../../redux/cart/c
 function CheckoutItem(
     {
         cartItem,
-        clearItem,
-        addOneItem,
-        removeOneItem
     }) {
         const {name, imageUrl, price, quantity} = cartItem;
+        var {
+            removeItem: removeOneItem,
+            addItem: addOneItem,
+            clearItemFromCart: clearItem
+        } = React.useContext(CartContext);
+
         console.log(clearItem);
+
     return (
         <div className="checkout-item">
             <div className="image-container">

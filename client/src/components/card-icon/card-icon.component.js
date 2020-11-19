@@ -11,15 +11,21 @@ import './card-icon.styles.scss';
 
 import { CartContext } from '../../providers/cart/cart.provider';
 
-function CartIcon({ itemCount}) {
-    var {toggleCartHidden} = React.useContext(CartContext);
+function CartIcon() {
+    //var {toggleCartHidden} = React.useContext(CartContext);
 
     return(
-        <div className="cart-icon" onClick={toggleCartHidden}>
-            <ShoppingIcon className="shopping-icon"></ShoppingIcon>
-            <span className="item-count">{itemCount}</span>
-        </div>
+        <CartContext.Consumer>{value => {
+                const { toggleCartHidden, cartItemsCount } = value;
+                return (
+                    <div className="cart-icon" onClick={toggleCartHidden}>
+                        <ShoppingIcon className="shopping-icon"></ShoppingIcon>
+                        <span className="item-count">{cartItemsCount}</span>
 
+                    </div>
+                );
+        }}
+        </CartContext.Consumer>
     );
 }
 

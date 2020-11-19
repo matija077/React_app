@@ -12,8 +12,6 @@ function Shop({fetchCollectionStart, match}) {
         fetchCollectionStart();
     }, [fetchCollectionStart]);
 
-    console.log("sta radimoo");
-
     return(
         <div className="shop-page">
             <Route

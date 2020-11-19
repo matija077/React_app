@@ -40,3 +40,31 @@ export function removeOneItemFromCart(cartItems ,cartItemToRemove) {
 
     return cartItems;
 }
+
+export function filterItemFromCart(cartItems, item) {
+    return cartItems.filter(
+        cartItem => cartItem.id !== item.id
+    )
+
+}
+
+export function getCartItemsCount(cartItems) {
+    return cartItems.reduce(
+        reducer(quantity)
+        , 0
+    );
+}
+
+function reducer(calculation){
+    return function(accumulatedQuantity, item) {
+        return accumulatedQuantity + calculation(item);
+    }
+}
+
+function pricePerQuantity(cartItem) {
+    return cartItem.quantity * cartItem.price;
+}
+
+function quantity(cartItem) {
+    return cartItem.quantity;
+}

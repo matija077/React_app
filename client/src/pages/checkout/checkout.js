@@ -8,10 +8,13 @@ import ClearCart  from '../../components/clear-cart/clearCart.component';
 
 import  {selectCartItems, selectCartTotal} from '../../redux/cart/card.selectors'
 
+import { CartContext } from '../../providers/cart/cart.provider';
+
 import './checkout.scss';
 
-function CheckoutPage({cartItems, total}) {
-    console.log(total);
+function CheckoutPage({total}) {
+    var { cartItems } = React.useContext(CartContext);
+
     return (
         <div className="checkout-page">
             <div className="checkout-header">
