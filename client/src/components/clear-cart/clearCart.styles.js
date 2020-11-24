@@ -5,4 +5,5 @@ export const ClearCartItemsContainer = styled.div`
     height: 30px;
     display: flex;
     margin-left: auto;
+    cursor: pointer;
 `;
