@@ -1,0 +1,20 @@
+ul{
+    padding: 0px;
+}
+
+.navbar-nav {
+    display: flex;
+    list-style: none;
+}
+
+.navbar-nav li {
+    margin: auto 5px;
+}
+
+.navbar-nav li:first-of-type {
+    margin-left: 0px;
+}
+
+.navbar-nav li:last-of-type {
+    margin-right: 0px;
+}

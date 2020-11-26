@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import RouteApp from './RouteApp';
 
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -13,9 +14,9 @@ ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
       <BrowserRouter>
-      <PersistGate persistor={persistor}>
-        <App />
-      </PersistGate>
+        <PersistGate persistor={persistor}>
+          <RouteApp />
+        </PersistGate>
       </BrowserRouter>
     </React.StrictMode>
   </Provider>,
