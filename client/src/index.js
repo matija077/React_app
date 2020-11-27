@@ -45,6 +45,12 @@ client.query({
   `
 }).then(res => { console.log(res) });
 
+client.writeData({
+  data: {
+    hidden: true
+  }
+});
+
 ReactDOM.render(
   <ApolloProvider client={client}>
     <Provider store={store}>
