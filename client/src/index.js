@@ -12,6 +12,7 @@ import { ApolloProvider } from 'react-apollo';
 import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloClient, gql } from 'apollo-boost';
+import { resolvers, typeDefs } from './graphQL/resolvers';
 
 const { store, persistor } = combineObject;
 
@@ -24,7 +25,9 @@ var cache = new InMemoryCache();
 
 var client = new ApolloClient({
   link: httpLink,
-  cache: cache
+  cache: cache,
+  typeDefs,
+  resolvers
 });
 
 client.query({
@@ -47,7 +50,7 @@ client.query({
 
 client.writeData({
   data: {
-    hidden: true
+    cartHidden: true
   }
 });
 
