@@ -5,7 +5,8 @@ import {selectCartHidden} from '../../redux/cart/card.selectors';
 import {selectCurrentUser} from '../../redux/user/user.selectors';
 import { signOutStart } from '../../redux/user/user.actions';
 
-import CartIcon from '../card-icon/card-icon.component';
+//import CartIcon from '../card-icon/card-icon.component';
+import {default as CartIcon} from '../card-icon/card-icon.container';
 import Cart from '../cart/cart.component';
 
 import {connect} from 'react-redux';
@@ -55,7 +56,7 @@ function Header({currentUser, hidden, ...rest}) {
 // state is actualy yroot reducer
 const mapStateToProps = createStructuredSelector({
     currentUser: selectCurrentUser,
-    hidden: selectCartHidden,
+    //hidden: selectCartHidden,
 });
 
 const mapDispatchToProps = (dispatch) => {

@@ -6,7 +6,8 @@ import {createStructuredSelector} from 'reselect';
 import './pages/homepage/homepage.scss';
 import './App.css';
 
-import Header from './components/header/header.component';
+//import Header from './components/header/header.component';
+import {default as Header} from './components/header/header.container';
 import SingInAndSingUpPage from './pages/sign-in-sign-up/sign-in-sign-up';
 import HomePage from './pages/homepage/homepage';
 import Shop from './pages/shop/shop';

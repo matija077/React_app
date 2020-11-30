@@ -19,7 +19,7 @@ var resolvers = {
                 query: GET_CART_HIDDEN
             })
 
-            console.log(_);
+            console.log(cartHidden);
 
             cache.writeQuery({
                 query: GET_CART_HIDDEN,

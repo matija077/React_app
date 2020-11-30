@@ -10,17 +10,17 @@ import  {ReactComponent as ShoppingIcon} from '../../assets/11.2 shopping-bag.sv
 import './card-icon.styles.scss';
 
 function CartIcon({toggleCartHidden, itemCount}) {
+
     return(
         <div className="cart-icon" onClick={toggleCartHidden}>
             <ShoppingIcon className="shopping-icon"></ShoppingIcon>
             <span className="item-count">{itemCount}</span>
         </div>
-
     );
 }
 
 const mapDispatchToProps = dispatch => ({
-    toggleCartHidden: () => dispatch(toggleCartHidden())
+    toggleCartHiddenOld: () => dispatch(toggleCartHidden())
 })
 
 const mapStateToProps = createStructuredSelector({
