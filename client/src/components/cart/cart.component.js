@@ -12,7 +12,11 @@ import ClearCart  from '../clear-cart/clearCart.component';
 
 import './cart.style.scss';
 
-function Cart({ cartItems, history, dispatch }) {
+function Cart({ cartItems, history, toggleCartHidden }) {
+    console.log(cartItems);
+    console.log(history);
+    console.log(toggleCartHidden);
+
     return(
         <div className="cart-dropdown">
             <ClearCart></ClearCart>
@@ -34,7 +38,7 @@ function Cart({ cartItems, history, dispatch }) {
             </div>
             <SubmitComponent onClick={() => {
                 history.push('/checkout');
-                dispatch(toggleCartHidden());
+                toggleCartHidden();
             }}>
                 GO TO CHECKOUT
             </SubmitComponent>
@@ -43,7 +47,7 @@ function Cart({ cartItems, history, dispatch }) {
 }
 
 const mapStateToProps = createStructuredSelector({
-    cartItems: selectCartItems,
+    cartItemsOld: selectCartItems,
 })
 
 export default withRouter(connect(

@@ -7,7 +7,8 @@ import { signOutStart } from '../../redux/user/user.actions';
 
 //import CartIcon from '../card-icon/card-icon.component';
 import {default as CartIcon} from '../card-icon/card-icon.container';
-import Cart from '../cart/cart.component';
+//import Cart from '../cart/cart.component';
+import { default as Cart } from '../cart/cart.container';
 
 import {connect} from 'react-redux';
 
