@@ -8,6 +8,7 @@ import './item-collection.style.scss';
 
 function ItemCollection({item, addItem, ...rest}) {
     const {name, price, imageUrl } = item;
+    const addItemWrapper = (event) => addItem(item)
 
     return(
         <div className="collection-item">
@@ -24,7 +25,7 @@ function ItemCollection({item, addItem, ...rest}) {
             </div>
             <SubmitComponent
                 inverted
-                 onClick={() => addItem(item)}
+                 onClick={addItemWrapper}
             >
                 ADD TO CART
             </SubmitComponent>
@@ -34,7 +35,7 @@ function ItemCollection({item, addItem, ...rest}) {
 
 const mapDispatchToProps = dispatch => {
     return {
-        addItem: (item) => dispatch(addCartItem(item)),
+        addItemOld: (item) => dispatch(addCartItem(item)),
     };
 }
 

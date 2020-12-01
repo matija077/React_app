@@ -25,20 +25,31 @@ const GET_CART_ITEMS = gql`
     }
 `;
 
+const ADD_ITEM_TO_CART = gql`
+    mutation AddItemToCart($item: item!) {
+        addItemToCart(item: $item) @client
+    }
+`;
+
 const TOGGLE_CART_HIDDEN = gql`
     mutation ToggleCartHidden {
         toggleCartHidden @client
     }
 `;
 
+var queries ={
+    GET_CART_HIDDEN,
+    GET_CART_ITEMS,
+};
+
+var mutations = {
+    TOGGLE_CART_HIDDEN,
+    ADD_ITEM_TO_CART
+}
+
 var queriesAndMutations = {
-    queries:{
-        GET_CART_HIDDEN,
-        GET_CART_ITEMS,
-    },
-    mutations: {
-        TOGGLE_CART_HIDDEN
-    }
+    queries,
+    mutations
 };
 
 var resolvers = {
@@ -58,12 +69,13 @@ var resolvers = {
             return !cartHidden;
         },
 
-        addItemToCart: (_root, { item }, { cache }) => {
+        addItemToCart: (_root, args, { cache }) => {
             const { cartItems } = cache.readQuery({
                 query: GET_CART_ITEMS
             })
 
-            const newCartItems = addItemToCart(cartItems, item);
+            console.log(args);
+            const newCartItems = addItemToCart(cartItems, args.item);
 
             cache.writeQuery({
                 query: GET_CART_ITEMS,
@@ -77,4 +89,10 @@ var resolvers = {
     }
 };
 
-export { resolvers, typeDefs, queriesAndMutations };
+export {
+    resolvers,
+    typeDefs,
+    queriesAndMutations,
+    mutations,
+    queries
+};
