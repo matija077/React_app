@@ -6,12 +6,14 @@ import ItemCollection from './item-collection.component';
 import { mutations } from '../../graphQL/resolvers';
 
 function ItemCollectionContainer(props) {
+    console.log(props);
+    console.log("pristan sam");
     var [addItem] = useMutation(mutations.ADD_ITEM_TO_CART);
 
     var addItemWrapper = (item) =>
         addItem({ variables: { item: item } })
 
-    console.log(addItemWrapper);
+
 
     return(
         <ItemCollection

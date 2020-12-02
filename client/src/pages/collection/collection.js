@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import CollectionItem from '../../components/item-collection/item-collection.component';
+//import CollectionItem from '../../components/item-collection/item-collection.component';
+import { default as CollectionItem}  from '../../components/item-collection/item-collection.container';
 
 import { selectCollection } from '../../redux/shop/shop.selectors';
 
@@ -17,7 +18,7 @@ function CollectionPage(props) {
             <div className="items">
                 {
                     items.map(item =>
-                        <CollectionItem key={item.id} item={item} />)
+                        <CollectionItem key={item.id} item={item}>"dolazim iz collectiona"</CollectionItem>)
                 }
             </div>
         </div>

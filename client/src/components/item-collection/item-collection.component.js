@@ -6,7 +6,12 @@ import SubmitComponent from '../SubmitButton/SubmitButton.component';
 
 import './item-collection.style.scss';
 
-function ItemCollection({item, addItem, ...rest}) {
+function ItemCollection(porps) {
+    console.log(porps);
+    var {item, addItem, ...rest} = porps;
+    console.log(addItem);
+    console.log(item);
+    console.log(rest);
     const {name, price, imageUrl } = item;
     const addItemWrapper = (event) => addItem(item)
 
