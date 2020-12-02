@@ -7,8 +7,9 @@ import { selectCollection } from '../../redux/shop/shop.selectors';
 
 import './collection.scss';
 
-function CollectionPage({ collection }) {
-    const { title, items } = collection;
+function CollectionPage(props) {
+    console.log(props);
+    const { title, items } = props.collection;
 
     return (
         <div className="collection-page">
@@ -24,7 +25,7 @@ function CollectionPage({ collection }) {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-     collection: selectCollection(ownProps.match.params.collectionId)(
+     collectionOld: selectCollection(ownProps.match.params.collectionId)(
          state
      )
 })

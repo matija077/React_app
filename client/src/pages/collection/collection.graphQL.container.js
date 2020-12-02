@@ -36,19 +36,22 @@ function CollectionPageContainer({ match }) {
                 }) => {
                     var returnObject = {};
                     var collection = data?.getCollectionsByTitle;
-                    console.log(data);
 
-                    if (loading) {
-                        const Spinner = WithSpinner(null);
-                        returnObject = <Spinner isLoading></Spinner>;
-                    } else if (error) {
+                    if (error) {
                         returnObject = <div>Error {error}</div>;
                     } else {
-                        returnObject =
-                            <CollectionsPage
-                                collection={collection}
-                                match={match}>
-                            </CollectionsPage>;
+                        if (loading) {
+                            const Spinner = WithSpinner(null);
+                            returnObject = <Spinner isLoading></Spinner>;
+                            // return <Spinner isLoading></Spinner>;
+                        } else {
+                            console.log(collection);
+                            returnObject =
+                                <CollectionsPage
+                                    collection={collection}
+                                    match={match}>
+                                </CollectionsPage>
+                        }
                     }
 
                     return returnObject;

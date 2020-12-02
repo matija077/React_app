@@ -1,4 +1,4 @@
-export function addItemToCart(
+function addItemToCart(
     cartItems, cartItemToAdd) {
         const existingCartItem = cartItems.find(
             cartItem => cartItem.id === cartItemToAdd.id
@@ -15,7 +15,7 @@ export function addItemToCart(
         return [...cartItems, {...cartItemToAdd, quantity: 1}];
 }
 
-export function removeOneItemFromCart(cartItems ,cartItemToRemove) {
+function removeOneItemFromCart(cartItems ,cartItemToRemove) {
     const existingCartITemIndex = cartItems.findIndex(
         cartItem => cartItem.id === cartItemToRemove.id
     );
@@ -39,4 +39,31 @@ export function removeOneItemFromCart(cartItems ,cartItemToRemove) {
     console.log(cartItems);
 
     return cartItems;
+}
+
+function pricePerQuantityModifier(cartItem) {
+    return cartItem.quantity * cartItem.price;
+}
+
+function calculation(modifierFunction) {
+    return function calculate(value) {
+        return modifierFunction(value)
+    };
+}
+
+function reducer(calculation) {
+    return function(accumulator, value) {
+        return accumulator + calculation(value);
+    }
+}
+
+function calculateItemCount(cartItems) {
+    return cartItems.reduce(reducer(
+        calculation(pricePerQuantityModifier())), 0)
+}
+
+export {
+    addItemToCart,
+    removeOneItemFromCart,
+    calculateItemCount
 }

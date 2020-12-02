@@ -1,6 +1,9 @@
 import { gql } from 'apollo-boost';
 
-import { addItemToCart } from './cart.utils.js';
+import {
+    addItemToCart,
+    calculateItemCount
+} from './cart.utils.js';
 
 var typeDefs = gql`
     extend type Mutation {
@@ -22,6 +25,12 @@ const GET_CART_HIDDEN = gql`
 const GET_CART_ITEMS = gql`
     {
         cartItems @client
+    }
+`;
+
+const GET_ITEM_COUNT = gql`
+    {
+        itemCount @client
     }
 `;
 
@@ -76,6 +85,11 @@ var resolvers = {
 
             console.log(args);
             const newCartItems = addItemToCart(cartItems, args.item);
+
+            cache.writeQuery({
+                query: GET_ITEM_COUNT,
+                data: { itemCount: calculateItemCount(newCartItems) }
+            })
 
             cache.writeQuery({
                 query: GET_CART_ITEMS,
