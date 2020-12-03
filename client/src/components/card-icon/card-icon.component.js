@@ -24,7 +24,7 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const mapStateToProps = createStructuredSelector({
-    itemCount: selectCartItemsCount,
+    itemCountOld: selectCartItemsCount,
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartIcon);
