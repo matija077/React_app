@@ -1,16 +1,11 @@
 import React from 'react';
 import { Mutation } from 'react-apollo';
-import { gql } from 'apollo-boost';
+import { mutations } from '../../graphQL/resolvers';
 
 import CartIcon  from './card-icon.component';
 
-const TOGGLE_CART_HIDDEN = gql`
-    mutation ToggleCartHidden {
-        toggleCartHidden @client
-    }
-`;
-
 function CardIconContainer() {
+    const TOGGLE_CART_HIDDEN = mutations.TOGGLE_CART_HIDDEN;
 
     return(
         <Mutation mutation={TOGGLE_CART_HIDDEN}>

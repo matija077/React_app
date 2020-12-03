@@ -13,8 +13,6 @@ function ItemCollectionContainer(props) {
     var addItemWrapper = (item) =>
         addItem({ variables: { item: item } })
 
-
-
     return(
         <ItemCollection
             {...props}

@@ -34,6 +34,36 @@ const GET_ITEM_COUNT = gql`
     }
 `;
 
+const GET_COLLECTIONS = gql`
+     {
+         collections {
+             id
+             title
+             items{
+                 id
+                 name
+                 price
+                 imageUrl
+             }
+         }
+     }
+`;
+
+const GET_COLLECTION_BY_TITLE = gql`
+    query getCollectionsByTitle($title: String!) {
+        getCollectionsByTitle(title: $title){
+            id
+            title
+            items{
+                id
+                name
+                price
+                imageUrl
+            }
+        }
+    }
+`;
+
 const ADD_ITEM_TO_CART = gql`
     mutation AddItemToCart($item: item!) {
         addItemToCart(item: $item) @client
@@ -49,6 +79,9 @@ const TOGGLE_CART_HIDDEN = gql`
 var queries ={
     GET_CART_HIDDEN,
     GET_CART_ITEMS,
+    GET_ITEM_COUNT,
+    GET_COLLECTIONS,
+    GET_COLLECTION_BY_TITLE
 };
 
 var mutations = {
@@ -58,7 +91,7 @@ var mutations = {
 
 var queriesAndMutations = {
     queries,
-    mutations
+    mutations,
 };
 
 var resolvers = {

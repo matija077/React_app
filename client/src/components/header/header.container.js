@@ -1,16 +1,11 @@
 import React from 'react';
 import { Query } from 'react-apollo';
-import { gql } from 'apollo-boost';
+import { queries } from '../../graphQL/resolvers';
 
 import Header from './header.component';
 
-const GET_CART_HIDDEN = gql`
-    {
-        cartHidden @client
-    }
-`;
-
 function HeaderComponent() {
+    const GET_CART_HIDDEN = queries.GET_CART_HIDDEN;
 
     return (
         <Query query={GET_CART_HIDDEN}>

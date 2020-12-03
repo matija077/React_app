@@ -1,27 +1,13 @@
 import React from 'react';
 
 import { Query } from 'react-apollo';
-import { gql } from 'apollo-boost';
+import { queries } from '../../graphQL/resolvers';
 
 import CollectionsPage from './collection';
 import WithSpinner from '../../components/spinner/with-spinner.component';
 
-const GET_COLLECTION_BY_TITLE = gql`
-    query getCollectionsByTitle($title: String!) {
-        getCollectionsByTitle(title: $title){
-            id
-            title
-            items{
-                id
-                name
-                price
-                imageUrl
-            }
-        }
-    }
-`;
-
 function CollectionPageContainer({ match }) {
+    const GET_COLLECTION_BY_TITLE = queries.GET_COLLECTION_BY_TITLE;
 
     return(
         <Query
@@ -38,19 +24,19 @@ function CollectionPageContainer({ match }) {
                     var collection = data?.getCollectionsByTitle;
 
                     if (error) {
-                        returnObject = <div>Error {error}</div>;
+                        return <div>Error {JSON.stringify(error)}</div>;
                     } else {
                         if (loading) {
                             const Spinner = WithSpinner(null);
-                            returnObject = <Spinner isLoading></Spinner>;
-                            // return <Spinner isLoading></Spinner>;
+                            return <Spinner isLoading></Spinner>;
                         } else {
                             console.log(collection);
-                            returnObject =
+                            return (
                                 <CollectionsPage
                                     collection={collection}
                                     match={match}>
                                 </CollectionsPage>
+                            )
                         }
                     }
 

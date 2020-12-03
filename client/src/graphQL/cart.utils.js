@@ -45,6 +45,10 @@ function pricePerQuantityModifier(cartItem) {
     return cartItem.quantity * cartItem.price;
 }
 
+function quantityModifier(cartItem) {
+    return cartItem.quantity;
+}
+
 function calculation(modifierFunction) {
     return function calculate(value) {
         return modifierFunction(value)
@@ -59,7 +63,7 @@ function reducer(calculation) {
 
 function calculateItemCount(cartItems) {
     return cartItems.reduce(reducer(
-        calculation(pricePerQuantityModifier())), 0)
+        calculation(quantityModifier)), 0)
 }
 
 export {
