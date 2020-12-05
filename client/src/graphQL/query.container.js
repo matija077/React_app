@@ -3,21 +3,18 @@ import React from 'react';
 import { Query} from 'react-apollo';
 
 import WithSpinner from '../components/spinner/with-spinner.component';
+import Error from '../components/error/error.component';
 
-function QueryContainer(props) {
-    var { queryName, render } = props;
-    console.log(queryName)
-    console.log(render);
+function QueryContainer({ queryName, render }) {
 
     return(
         <Query query={queryName}>
         {
             ({ data, loading, error }) => {
                 if (error) {
-                    return <div>Error</div>
+                    return <Error error={error}></Error>
                 }
 
-                //if (loading) {
                 const Spinner = WithSpinner(render(data));
                 console.log(Spinner);
                     return (
@@ -25,9 +22,6 @@ function QueryContainer(props) {
 
                         </Spinner>
                     );
-                /*} else {
-                    return render(data)
-                }*/
             }
         }
         </Query>
