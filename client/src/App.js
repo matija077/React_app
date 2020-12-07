@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {createStructuredSelector} from 'reselect';
 
 import './pages/homepage/homepage.scss';
-import './App.css';
+import GlobalStyle from './global.styles';
 
 import Header from './components/header/header.component';
 import SingInAndSingUpPage from './pages/sign-in-sign-up/sign-in-sign-up';
@@ -25,21 +25,22 @@ function App({checkUserSession, currentUser}) {
 
   return (
     <div>
-      <Header></Header>
-      <Switch>
-        <Route component={HomePage} path='/' exact></Route>
-        <Route component={Shop} path='/shop'></Route>
-        <Route
-          render={() =>
-            currentUser ?
-              (<Redirect to='/' />)
-            :
-              (<SingInAndSingUpPage />)}
-          path={['/signin', '/singup']}
-          exact
-        ></Route>
-        <Route component={CheckoutPage} path='/checkout' exact></Route>
-      </Switch>
+      <GlobalStyle />
+        <Header></Header>
+        <Switch>
+          <Route component={HomePage} path='/' exact></Route>
+          <Route component={Shop} path='/shop'></Route>
+          <Route
+            render={() =>
+              currentUser ?
+                (<Redirect to='/' />)
+              :
+                (<SingInAndSingUpPage />)}
+            path={['/signin', '/singup']}
+            exact
+          ></Route>
+          <Route component={CheckoutPage} path='/checkout' exact></Route>
+        </Switch>
     </div>
   );
 }
